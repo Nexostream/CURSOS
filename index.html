@@ -46,9 +46,9 @@
         .logo span { color: var(--primary); font-family: var(--font-base); font-size: 1.2rem; font-weight: 800; margin-left: 5px;}
         
         .nav-links { display: flex; gap: 10px; }
-        .btn-puente { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-glass); color: white !important; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
+        .btn-puente { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-glass); color: white !important; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 5px; cursor: pointer;}
         .btn-puente:hover { background: rgba(255,255,255,0.1); }
-        .btn-nav-outline { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--green); color: var(--green) !important; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 5px;}
+        .btn-nav-outline { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--green); color: var(--green) !important; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 5px; cursor: pointer;}
         .btn-nav-outline:hover { background: var(--green); color: black !important; box-shadow: 0 0 15px rgba(16,185,129,0.4); }
 
         @media (max-width: 800px) {
@@ -57,51 +57,73 @@
             .btn-puente, .btn-nav-outline { justify-content: center; }
         }
 
-        /* HERO & VIP PACK */
-        .hero { text-align: center; padding: 50px 5% 30px; }
+        /* HERO & ACCORDIONS */
+        .hero { text-align: center; padding: 40px 5% 20px; }
         .hero h1 { font-family: var(--font-lujo); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px; line-height: 1.1; font-weight: 800;}
-        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; font-weight: 300;}
+        .hero p { font-size: 1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; font-weight: 300;}
         
-        .vip-card { 
-            background: linear-gradient(145deg, rgba(245, 158, 11, 0.15) 0%, rgba(10, 10, 10, 0.8) 100%);
-            border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 20px; 
-            max-width: 800px; margin: 0 auto 50px; padding: 30px;
-            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
-            backdrop-filter: blur(10px); position: relative;
-        }
-        .vip-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: black; font-weight: 800; padding: 5px 20px; border-radius: 20px; font-size: 0.8rem; box-shadow: 0 4px 15px var(--primary-glow);}
-        .vip-card h2 { font-family: var(--font-lujo); color: var(--primary); font-size: 1.8rem; margin-bottom: 10px;}
-        .vip-card .price { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 15px;}
-        .vip-card p { color: #d4d4d8; font-size: 0.95rem; margin-bottom: 20px;}
-        .btn-vip { background: linear-gradient(135deg, #f59e0b, #d97706); color: black; padding: 15px 30px; border-radius: 12px; font-weight: 800; display: inline-block; transition: 0.3s; box-shadow: 0 4px 15px var(--primary-glow); font-size: 1rem; border: none; cursor: pointer;}
-        .btn-vip:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--primary-glow); filter: brightness(1.1);}
+        .producto-details { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: 16px; margin: 0 auto 25px; overflow: hidden; transition: 0.3s; max-width: 900px; backdrop-filter: blur(10px); }
+        .producto-details[open] { border-color: var(--box-color, var(--primary)); background: rgba(24, 24, 27, 0.85); box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px var(--box-color-shadow, var(--primary-glow)); }
+        
+        .producto-summary { padding: 18px 20px; color: white; background: transparent; border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; list-style: none; }
+        .producto-summary::-webkit-details-marker { display: none; }
+        .summary-info { display: flex; align-items: center; gap: 15px; }
+        .summary-img { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); font-size: 1.5rem;}
+        .summary-title h3 { margin: 0; font-size: 1.1rem; font-family: var(--font-lujo); letter-spacing: 0.5px;}
+        .summary-title p { font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0; font-weight: 300; }
+        .toggle-btn { color: var(--primary); font-weight: 600; font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; white-space: nowrap; border: 1px solid var(--border-glass); transition: 0.3s;}
+        .producto-details[open] .toggle-btn { background: var(--box-color, var(--primary)); color: #000; border-color: transparent;}
+        .producto-content { padding: 25px; border-top: 1px solid var(--border-glass); }
 
-        /* STORE SECTION (SHEETS) */
-        .store-container { max-width: 1200px; margin: 0 auto 80px; padding: 0 5%; }
-        .category-block { margin-bottom: 50px; }
-        .category-title { font-family: var(--font-lujo); font-size: 1.8rem; color: white; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between;}
+        .acordeon-contenido p { color: #d4d4d8; font-size: 0.95rem; line-height: 1.7; font-weight: 300; }
+
+        /* PACKS GRID (Inside Accordion) */
+        .precios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .pack-card { background: rgba(10, 10, 10, 0.6); border: 1px solid var(--border-glass); border-radius: 16px; padding: 20px; position: relative; display: flex; flex-direction: column; text-align: center; }
+        .pack-card.vip { border-color: rgba(245, 158, 11, 0.3); background: linear-gradient(180deg, rgba(245,158,11,0.05) 0%, rgba(10,10,10,0.8) 100%); }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-weight: 800; padding: 4px 15px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 0.5px;}
+        .pack-card h3 { font-family: var(--font-lujo); font-size: 1.4rem; margin-top: 10px; margin-bottom: 5px; font-weight: 600;}
+        .pack-card .precio { font-size: 2rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;}
+        .pack-card .precio span { font-size: 0.85rem; font-weight: 400; letter-spacing: normal; opacity: 0.7;}
         
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .btn-comprar { width: 100%; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; border: none; cursor: pointer; font-size: 0.95rem; transition: 0.3s; margin-top: auto;}
+        .btn-comprar.solid { box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .btn-comprar.solid:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* STORE SECTION (SEARCH, FILTERS, GRID) */
+        .store-controls { max-width: 1200px; margin: 0 auto 20px; padding: 0 5%; }
+        .search-input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); padding: 14px 20px; border-radius: 12px; color: white; margin-bottom: 15px; font-size: 0.95rem; transition: 0.3s;}
+        .search-input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);}
+        
+        .category-filters { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .category-filters::-webkit-scrollbar { display: none; }
+        .cat-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-muted); padding: 8px 18px; border-radius: 20px; cursor: pointer; white-space: nowrap; font-size: 0.85rem; font-weight: 400; transition: 0.3s;}
+        .cat-btn.active, .cat-btn:hover { background: var(--primary); color: black; border-color: var(--primary); font-weight: 600;}
+
+        .store-container { max-width: 1200px; margin: 0 auto 80px; padding: 0 5%; }
+        .category-block { margin-bottom: 40px; }
+        .category-title { font-family: var(--font-lujo); font-size: 1.4rem; color: white; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center;}
+        
+        /* GRID COMPACTA PARA MÓVIL (2-3 columnas) */
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
         
         .course-card { 
             background: var(--card-glass); border: 1px solid var(--border-glass); 
-            border-radius: 16px; padding: 20px; display: flex; flex-direction: column;
+            border-radius: 12px; padding: 15px; display: flex; flex-direction: column;
             transition: 0.3s; backdrop-filter: blur(5px);
         }
-        .course-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5);}
-        .course-icon { font-size: 2rem; margin-bottom: 15px; }
-        .course-title { font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 10px; line-height: 1.3;}
-        .course-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; margin-top: auto;}
+        .course-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.2); }
+        .course-title { font-size: 0.9rem; font-weight: 600; color: white; margin-bottom: 8px; line-height: 1.3;}
+        .course-price { font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 12px; margin-top: auto;}
         
-        .btn-add { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: white; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%;}
+        .btn-add { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: white; padding: 8px; border-radius: 8px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.3s; width: 100%;}
         .btn-add:hover { background: var(--primary); border-color: var(--primary); color: black;}
 
-        /* CARRITO FLOTANTE */
-        .cart-float { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: black; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 20px var(--primary-glow); z-index: 101; transition: 0.3s;}
+        /* CARRITO FLOTANTE Y SIDEBAR */
+        .cart-float { position: fixed; bottom: 80px; right: 20px; background: var(--primary); color: black; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; box-shadow: 0 5px 20px var(--primary-glow); z-index: 101; transition: 0.3s;}
         .cart-float:hover { transform: scale(1.1); }
-        .cart-badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; font-size: 0.8rem; font-weight: 800; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;}
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; font-size: 0.75rem; font-weight: 800; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;}
 
-        /* SIDEBAR CARRITO */
         .cart-sidebar { 
             position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh; 
             background: rgba(10,10,12,0.95); backdrop-filter: blur(15px); border-left: 1px solid var(--border-glass);
@@ -113,34 +135,29 @@
         .close-cart { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;}
         
         .cart-items { flex-grow: 1; overflow-y: auto; padding: 20px;}
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 10px; margin-bottom: 10px;}
-        .cart-item-info h4 { color: white; font-size: 0.95rem; font-weight: 400; margin-bottom: 5px;}
-        .cart-item-info span { color: var(--primary); font-weight: 800;}
-        .btn-remove { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1.2rem; padding: 5px;}
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 10px; margin-bottom: 10px;}
+        .cart-item-info h4 { color: white; font-size: 0.9rem; font-weight: 400; margin-bottom: 2px;}
+        .cart-item-info span { color: var(--primary); font-weight: 800; font-size: 0.95rem;}
+        .btn-remove { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; padding: 5px;}
         
         .cart-footer { padding: 20px; border-top: 1px solid var(--border-glass); background: #000;}
         .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; color: #d4d4d8; font-size: 0.95rem;}
-        .summary-total { display: flex; justify-content: space-between; margin-bottom: 20px; color: white; font-size: 1.3rem; font-weight: 800;}
+        .summary-total { display: flex; justify-content: space-between; margin-bottom: 20px; color: white; font-size: 1.2rem; font-weight: 800;}
         
         .decoy-alert { background: rgba(239, 68, 68, 0.1); border: 1px dashed #ef4444; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; display: none;}
         .decoy-alert p { color: #fca5a5; font-size: 0.85rem; margin-bottom: 10px; font-weight: 300;}
         .btn-decoy { background: #ef4444; color: white; width: 100%; border: none; padding: 8px; border-radius: 8px; font-weight: 600; cursor: pointer;}
 
-        .btn-checkout { background: var(--green); color: black; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: 800; font-size: 1.05rem; cursor: pointer; box-shadow: 0 5px 15px rgba(16,185,129,0.3); transition: 0.3s;}
+        .btn-checkout { background: var(--green); color: black; width: 100%; padding: 14px; border: none; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 5px 15px rgba(16,185,129,0.3); transition: 0.3s;}
         .btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(16,185,129,0.5);}
-        .payment-methods { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 15px; font-weight: 300;}
 
-        /* OVERLAY BACKGROUND FOR SIDEBAR & MODAL */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; display: none; backdrop-filter: blur(3px);}
         .overlay.active { display: block; }
 
         /* MODAL LISTA MEGA PACK */
         .modal-mega { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(15,15,15,0.95); border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 800px; height: 85vh; border-radius: 20px; z-index: 1000; display: none; flex-direction: column; box-shadow: 0 25px 50px rgba(0,0,0,0.8); backdrop-filter: blur(15px);}
         .modal-mega.active { display: flex; }
-        .modal-header { padding: 20px 25px; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); }
-        .modal-header h3 { color: #3b82f6; font-family: var(--font-lujo); }
-        .modal-body { padding: 20px; overflow-y: auto; flex-grow: 1; }
-        .mega-list-item { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d4d8; font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start;}
+        .mega-list-item { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d4d8; font-size: 0.85rem; display: flex; gap: 10px;}
         .mega-list-item::before { content: "📚"; }
     </style>
 </head>
@@ -149,42 +166,95 @@
     <!-- SCRIPT DE CONFIGURACIÓN PRINCIPAL (TUS VARIABLES AQUÍ) -->
     <script>
         const CONFIG = {
-            whatsapp: "593967343814",     // Tu número de WhatsApp
-            precioBase: 5.00,             // Precio normal por curso
+            whatsapp: "593967343814",     // Tu número actual (Cámbialo aquí si necesitas)
+            precioBase: 5.00,             // Precio normal por curso individual
             precioVIP: 50.00,             // Precio de la Bóveda Completa
+            precioMegaPack: 5.00,         // Precio del Mega Pack de 1000 cursos
             combo1_min: 3,                // Mínimo para combo 1
             combo1_desc: 0.10,            // Descuento 10%
             combo2_min: 5,                // Mínimo para combo 2
             combo2_desc: 0.15,            // Descuento 15%
-            limiteSenuelo: 35.00          // Si el carrito suma más de esto, sale la alerta VIP
+            limiteSenuelo: 35.00          // Si el carrito suma esto, sale la alerta VIP
         };
     </script>
 
     <header>
         <div class="logo">NEXO<span>ACADEMIA</span></div>
         <div class="nav-links">
-            <a href="https://www.whatsapp.com/channel/0029VbDpTBHGufJ5FYQ7qC1I" class="btn-puente" target="_blank">🕷️ Referencias</a>
-            <a href="#" class="btn-nav-outline" onclick="window.open(`https://wa.me/${CONFIG.whatsapp}`, '_blank')">💬 Soporte</a>
+            <button class="btn-puente" onclick="window.open('https://www.whatsapp.com/channel/0029VbDpTBHGufJ5FYQ7qC1I', '_blank')">🕷️ Referencias</button>
+            <button class="btn-nav-outline" onclick="window.open(`https://wa.me/${CONFIG.whatsapp}`, '_blank')">💬 Soporte</button>
         </div>
     </header>
 
     <section class="hero">
         <h1>Educación Digital <br><span>Sin Límites.</span></h1>
-        <p>Aprende marketing, diseño, trading y ventas con los mejores cursos premium del mercado.</p>
-        
-        <div class="vip-card">
-            <div class="vip-badge">ACCESO TOTAL</div>
-            <h2>La Bóveda Premium</h2>
-            <div class="price" id="vip-price-display">$-- USD</div>
-            <p>¿Para qué comprar de a uno? Llévate el acceso completo a los más de 1000 cursos de nuestro catálogo principal y actualizaciones constantes.</p>
-            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn-vip" onclick="comprarVIP()">Quiero la Bóveda Completa</button>
-                <button class="btn-puente" style="padding: 15px; border-color: rgba(59,130,246,0.5); color: #60a5fa !important;" onclick="abrirModalMega()">📋 Ver Lista de +1000 Cursos</button>
-            </div>
-        </div>
     </section>
 
-    <!-- AQUÍ SE INYECTARÁN LAS CATEGORÍAS DESDE GOOGLE SHEETS -->
+    <!-- 1. EXPLICACIÓN DE LOS CURSOS -->
+    <details class="producto-details" style="border-color: rgba(255,255,255,0.2);">
+        <summary class="producto-summary">
+            <div class="summary-info">
+                <div class="summary-img" style="font-size: 1.2rem; color: white;">💡</div>
+                <div class="summary-title">
+                    <h3 style="color: white;">Información Importante</h3>
+                    <p>Sobre el contenido de los cursos</p>
+                </div>
+            </div>
+            <span class="toggle-btn" style="color: white; border-color: rgba(255,255,255,0.3);">Leer ↓</span>
+        </summary>
+        <div class="producto-content acordeon-contenido">
+            <p>Los cursos que están aquí son los actualizados a las fechas correspondientes, son los módulos de enseñanza. Esto significa que sí están las herramientas que explican en los cursos, pero no está su contacto o algo parecido; es puramente contenido de aprendizaje alojado en la nube.</p>
+            <p style="margin-top: 10px;">Puedes comprar 1 o varios cursos para armar tus propios packs con descuento automático, o adquirir los paquetes de acceso completo. Si tienes dudas, escríbeme al soporte.</p>
+        </div>
+    </details>
+
+    <!-- 2. PAQUETES COMPLETOS (BÓVEDA Y MEGA PACK) -->
+    <details class="producto-details" style="--box-color: var(--primary); --box-color-shadow: var(--primary-glow);" open>
+        <summary class="producto-summary">
+            <div class="summary-info">
+                <div class="summary-img" style="font-size: 1.4rem;">🎁</div>
+                <div class="summary-title">
+                    <h3 style="color: var(--primary);">Paquetes de Acceso Completo</h3>
+                    <p>Lleva bóvedas enteras por un único pago.</p>
+                </div>
+            </div>
+            <span class="toggle-btn">Ocultar ↑</span>
+        </summary>
+        <div class="producto-content">
+            <div class="precios-grid">
+                
+                <!-- BÓVEDA PRINCIPAL -->
+                <div class="pack-card vip">
+                    <div class="badge" style="background: var(--primary); color: black;">ACCESO TOTAL</div>
+                    <h3 style="color: var(--primary); margin-top: 15px;">La Bóveda Premium</h3>
+                    <div class="precio" id="vip-price-display" style="color: white;">$-- <span>USD</span></div>
+                    <p style="color: #d4d4d8; font-size: 0.9rem; text-align: center; margin-bottom: 25px;">Acceso completo e ilimitado a todos los cursos del catálogo principal listados abajo.</p>
+                    <button class="btn-comprar solid" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: black;" onclick="comprarVIP()">Comprar Bóveda Completa</button>
+                </div>
+
+                <!-- MEGA PACK +1000 -->
+                <div class="pack-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <div class="badge" style="background: #10b981; color: black;">NUEVO PACK EXTRA</div>
+                    <h3 style="color: #6ee7b7; margin-top: 15px;">Mega Pack Alternativo</h3>
+                    <div class="precio" id="mega-price-display" style="color: white;">$-- <span>USD</span></div>
+                    <p style="color: #d4d4d8; font-size: 0.9rem; text-align: center; margin-bottom: 15px;">Catálogo independiente con más de 1000 cursos diferentes de diversas temáticas.</p>
+                    <button class="btn-puente" style="width: 100%; margin-bottom: 12px; border-color: rgba(16,185,129,0.4); color: #6ee7b7 !important; justify-content: center;" onclick="abrirModalMega()">📋 Ver Lista de Cursos</button>
+                    <button class="btn-comprar solid" style="background: linear-gradient(135deg, #10b981, #059669); color: white;" onclick="comprarMegaPack()">Comprar Pack Alternativo</button>
+                </div>
+
+            </div>
+        </div>
+    </details>
+
+    <!-- 3. BUSCADOR Y FILTROS -->
+    <div class="store-controls">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar un curso por nombre..." onkeyup="filtrarCursos()">
+        <div id="category-filters" class="category-filters">
+            <!-- Botones inyectados por JS -->
+        </div>
+    </div>
+
+    <!-- 4. CATÁLOGO INDIVIDUAL (GOOGLE SHEETS) -->
     <div class="store-container" id="store-container">
         <div style="text-align: center; color: var(--text-muted); padding: 50px;">
             ⏳ Cargando catálogo desde la base de datos...
@@ -205,34 +275,29 @@
             <h3>Tu Carrito</h3>
             <button class="close-cart" onclick="toggleCart()">×</button>
         </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Items del carrito -->
-        </div>
+        <div class="cart-items" id="cart-items"></div>
         <div class="cart-footer">
             
             <!-- EL SEÑUELO PSICOLÓGICO -->
             <div class="decoy-alert" id="decoy-alert">
-                <p>🛑 ¡Espera! Estás pagando <strong id="decoy-price"></strong> por unos pocos cursos. Por solo <strong id="decoy-diff"></strong> más te llevas la bóveda COMPLETA.</p>
-                <button class="btn-decoy" onclick="comprarVIP()">¡Mejor me llevo TODO!</button>
+                <p>🛑 ¡Espera! Estás pagando <strong id="decoy-price"></strong> por unos pocos cursos. Por solo <strong id="decoy-diff"></strong> más te llevas la Bóveda Premium COMPLETA.</p>
+                <button class="btn-decoy" onclick="comprarVIP()">¡Mejor me llevo la Bóveda!</button>
             </div>
 
             <div class="summary-row">
-                <span>Subtotal:</span>
-                <span id="cart-subtotal">$0.00</span>
+                <span>Subtotal:</span><span id="cart-subtotal">$0.00</span>
             </div>
             <div class="summary-row">
                 <span style="color: var(--green);">Descuento Automático:</span>
                 <span id="cart-discount" style="color: var(--green);">-$0.00</span>
             </div>
             <div class="summary-total">
-                <span>Total a Pagar:</span>
-                <span id="cart-total">$0.00</span>
+                <span>Total a Pagar:</span><span id="cart-total">$0.00</span>
             </div>
             <button class="btn-checkout" onclick="checkout()">📲 Comprar vía WhatsApp</button>
             
-            <div class="payment-methods">
-                🛡️ Pagos Seguros vía:<br>
-                Binance Pay / Cripto (0% Com) · PayPhone (Tarjeta) · Banco
+            <div style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 15px;">
+                Binance Pay (Cripto) · PayPhone (Tarjeta) · Banco
             </div>
         </div>
     </div>
@@ -240,7 +305,7 @@
     <!-- MODAL LISTA +1000 CURSOS (SHEET 2) -->
     <div class="modal-mega" id="modal-mega">
         <div class="modal-header">
-            <h3>📋 Lista de +1000 Cursos (Mega Pack)</h3>
+            <h3>📋 Lista del Mega Pack</h3>
             <button class="close-cart" onclick="cerrarModalMega()">×</button>
         </div>
         <div class="modal-body" id="mega-list-body">
@@ -253,14 +318,12 @@
         const urlSheetTienda = "https://docs.google.com/spreadsheets/d/17QZ1FY-EzqxuDNFF9BCUK0n3qNOe7KdHmudFZKMipYQ/export?format=csv";
         const urlSheetLista = "https://docs.google.com/spreadsheets/d/1OYLXTaO-j5fT01yotMqJLZ_s5twszJqlW1cauZe3pwc/export?format=csv";
 
-        // Inicializar Precios en UI
-        document.getElementById('vip-price-display').innerText = `$${CONFIG.precioVIP.toFixed(2)} USD`;
+        document.getElementById('vip-price-display').innerHTML = `$${CONFIG.precioVIP.toFixed(2)} <span>USD</span>`;
+        document.getElementById('mega-price-display').innerHTML = `$${CONFIG.precioMegaPack.toFixed(2)} <span>USD</span>`;
 
-        // Variables Globales
         let carrito = [];
-        const iconos = ['🚀', '📈', '🎨', '💻', '🧠', '💰', '🎯', '🔥'];
+        const iconos = ['✦', '⚡', '🚀', '🔥', '💡', '🎯'];
 
-        // PARSER CSV
         function parseCSV(text) {
             let result = []; let row = []; let inQuotes = false; let val = "";
             for (let i = 0; i < text.length; i++) {
@@ -283,53 +346,53 @@
             return result;
         }
 
-        // CARGAR TIENDA (SHEET 1)
         async function cargarTienda() {
             try {
                 const response = await fetch(urlSheetTienda);
                 const data = await response.text();
                 const filas = parseCSV(data);
-                
                 let categorias = {};
                 
-                // Filas = [Nombre, Categoria, PrecioEspecial]
                 filas.forEach((fila, index) => {
-                    if (index === 0 && fila[0].toLowerCase().includes('curso')) return; // Saltar cabecera
-                    
+                    if (index === 0 && (fila[0]||"").toLowerCase().includes('curso')) return; 
                     let nombre = (fila[0] || "").trim();
                     let categoria = (fila[1] || "Otros").trim();
                     let precioCelda = (fila[2] || "").trim();
-                    
-                    if (!nombre) return; // Fila vacía
+                    if (!nombre) return; 
 
-                    // Definir precio (Base o Especial)
                     let precioCurso = CONFIG.precioBase;
                     if (precioCelda !== "" && !isNaN(parseFloat(precioCelda))) {
                         precioCurso = parseFloat(precioCelda);
                     }
-
                     if (!categorias[categoria]) categorias[categoria] = [];
                     categorias[categoria].push({ nombre, precio: precioCurso });
                 });
 
                 renderizarTienda(categorias);
             } catch (error) {
-                document.getElementById('store-container').innerHTML = '<div style="text-align:center; color:#ef4444; padding:50px;">Error al cargar la tienda. Intenta recargar la página.</div>';
+                document.getElementById('store-container').innerHTML = '<div style="text-align:center; color:#ef4444; padding:50px;">Error al cargar catálogo.</div>';
             }
         }
 
         function renderizarTienda(categorias) {
             const container = document.getElementById('store-container');
-            container.innerHTML = ''; // Limpiar loader
+            const filters = document.getElementById('category-filters');
+            
+            container.innerHTML = ''; 
+            filters.innerHTML = `<button class="cat-btn active" onclick="filtrarPorCategoria('todas', this)">Mostrar Todos</button>`;
 
             let iconIndex = 0;
 
             for (const [categoria, cursos] of Object.entries(categorias)) {
                 let catIcon = iconos[iconIndex % iconos.length];
                 iconIndex++;
+                let catId = categoria.replace(/\s+/g, '-').toLowerCase();
+                
+                filters.innerHTML += `<button class="cat-btn" onclick="filtrarPorCategoria('${catId}', this)">${categoria}</button>`;
 
                 let seccion = document.createElement('div');
                 seccion.className = 'category-block';
+                seccion.dataset.cat = catId;
                 
                 let html = `<div class="category-title"><span>${catIcon} ${categoria}</span></div>`;
                 html += `<div class="courses-grid">`;
@@ -343,11 +406,41 @@
                         </div>
                     `;
                 });
-
                 html += `</div>`;
                 seccion.innerHTML = html;
                 container.appendChild(seccion);
             }
+        }
+
+        // BUSCADOR Y FILTROS
+        function filtrarCursos() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.course-card');
+            
+            cards.forEach(card => {
+                const titulo = card.querySelector('.course-title').innerText.toLowerCase();
+                if(titulo.includes(query)) card.style.display = 'flex';
+                else card.style.display = 'none';
+            });
+
+            document.querySelectorAll('.category-block').forEach(block => {
+                const visibles = block.querySelectorAll('.course-card[style="display: flex;"], .course-card:not([style*="display: none"])');
+                if(visibles.length === 0) block.style.display = 'none';
+                else block.style.display = 'block';
+            });
+        }
+
+        function filtrarPorCategoria(catId, btn) {
+            document.getElementById('searchInput').value = '';
+            filtrarCursos(); // Reset search
+            
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.category-block').forEach(block => {
+                if(catId === 'todas' || block.dataset.cat === catId) block.style.display = 'block';
+                else block.style.display = 'none';
+            });
         }
 
         // LÓGICA DEL CARRITO
@@ -363,11 +456,7 @@
         function agregarAlCarrito(nombre, precio) {
             carrito.push({ nombre, precio });
             actualizarUI();
-            
-            // Abrir carrito automáticamente al añadir
-            if(!document.getElementById('cart-sidebar').classList.contains('open')){
-                toggleCart();
-            }
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
         }
 
         function quitarDelCarrito(index) {
@@ -376,13 +465,9 @@
         }
 
         function actualizarUI() {
-            // Actualizar Badge
             document.getElementById('cart-badge').innerText = carrito.length;
-
-            // Actualizar Lista
             const lista = document.getElementById('cart-items');
             lista.innerHTML = '';
-            
             let subtotal = 0;
 
             if(carrito.length === 0) {
@@ -402,23 +487,17 @@
                 });
             }
 
-            // Calcular Descuentos
             let descuentoPorcentaje = 0;
-            if (carrito.length >= CONFIG.combo2_min) {
-                descuentoPorcentaje = CONFIG.combo2_desc;
-            } else if (carrito.length >= CONFIG.combo1_min) {
-                descuentoPorcentaje = CONFIG.combo1_desc;
-            }
+            if (carrito.length >= CONFIG.combo2_min) descuentoPorcentaje = CONFIG.combo2_desc;
+            else if (carrito.length >= CONFIG.combo1_min) descuentoPorcentaje = CONFIG.combo1_desc;
 
             let descuentoMonto = subtotal * descuentoPorcentaje;
             let total = subtotal - descuentoMonto;
 
-            // Actualizar Textos
             document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
             document.getElementById('cart-discount').innerText = `-$${descuentoMonto.toFixed(2)} (${(descuentoPorcentaje*100)}%)`;
             document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
 
-            // Lógica del SEÑUELO (Decoy Effect)
             const decoyBox = document.getElementById('decoy-alert');
             if (total >= CONFIG.limiteSenuelo && total < CONFIG.precioVIP) {
                 decoyBox.style.display = 'block';
@@ -429,36 +508,40 @@
             }
         }
 
-        // CHECKOUT WHATSAPP
+        // COMPRAS POR WHATSAPP
         function checkout() {
             if (carrito.length === 0) return alert("Añade algún curso al carrito primero.");
-            
             let descuentoFinal = document.getElementById('cart-discount').innerText;
             let totalFinal = document.getElementById('cart-total').innerText;
 
             let mensaje = `Hola, quiero comprar estos ${carrito.length} cursos:\n\n`;
-            carrito.forEach(item => {
-                mensaje += `- ${item.nombre} ($${item.precio.toFixed(2)})\n`;
-            });
+            carrito.forEach(item => { mensaje += `- ${item.nombre} ($${item.precio.toFixed(2)})\n`; });
             
-            mensaje += `\nDescuento: ${descuentoFinal}`;
+            mensaje += `\nDescuento aplicado: ${descuentoFinal}`;
             mensaje += `\n*TOTAL A PAGAR: ${totalFinal} USD*`;
             mensaje += `\n\nMi correo para recibir los accesos es: (Escribe tu correo aquí)\n¿Me pasas los datos para pagar?`;
 
-            let url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
 
         function comprarVIP() {
-            let mensaje = `Hola, quiero comprar *LA BÓVEDA COMPLETA* (+1000 Cursos) por $${CONFIG.precioVIP.toFixed(2)} USD.\n\nMi correo para el acceso es: (Escribe tu correo aquí)\n¿Me pasas los datos para pagar?`;
-            let url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+            let mensaje = `Hola, quiero comprar *LA BÓVEDA PREMIUM* (Acceso Total) por $${CONFIG.precioVIP.toFixed(2)} USD.\n\nMi correo para el acceso es: (Escribe tu correo aquí)\n¿Me pasas los datos para pagar?`;
+            window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+
+        function comprarMegaPack() {
+            let mensaje = `Hola, quiero comprar el *MEGA PACK ALTERNATIVO (+1000 Cursos)* por $${CONFIG.precioMegaPack.toFixed(2)} USD.\n\nMi correo para el acceso es: (Escribe tu correo aquí)\n¿Me pasas los datos para pagar?`;
+            window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
 
         // MODAL MEGA LISTA (SHEET 2)
         function abrirModalMega() {
             document.getElementById('modal-mega').classList.add('active');
+            
+            // Cerrar el acordeon de paquetes si está abierto para evitar amontonamiento visual en movil
+            document.getElementById('overlay').style.zIndex = "999";
             document.getElementById('overlay').classList.add('active');
+            document.getElementById('overlay').onclick = cerrarModalMega;
             
             if(document.getElementById('mega-list-body').innerHTML.includes('Cargando')) {
                 cargarListaMega();
@@ -468,6 +551,7 @@
         function cerrarModalMega() {
             document.getElementById('modal-mega').classList.remove('active');
             document.getElementById('overlay').classList.remove('active');
+            document.getElementById('overlay').onclick = toggleCart; // Restaurar funcion del overlay
         }
 
         async function cargarListaMega() {
@@ -482,16 +566,13 @@
                         html += `<div class="mega-list-item">${fila[0].trim()}</div>`;
                     }
                 });
-                
                 document.getElementById('mega-list-body').innerHTML = html;
             } catch (error) {
                 document.getElementById('mega-list-body').innerHTML = '<div style="color:#ef4444; text-align:center;">Error al cargar la lista.</div>';
             }
         }
 
-        // Iniciar
         window.addEventListener('load', cargarTienda);
     </script>
-
 </body>
 </html>
